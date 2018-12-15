@@ -9,6 +9,7 @@
 # <bitbar.dependencies>time machine</bitbar.dependencies>
 
 require 'date'
+require 'filesize'
 
 if ARGV.length > 0
   case ARGV[0]
@@ -103,6 +104,15 @@ else
       end
       puts "---"
       puts "Backing Up: #{per}%"
+      cur_bytes = status[:cur_bytes].to_s + ' B'
+      total_bytes = status[:total_bytes].to_s + ' B'
+      seconds_remaining = status[:time_remaining]
+      puts "#{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty}"
+      if seconds_remaining.nil?
+        puts "Calculating time remaining..."
+      else
+        puts "Time remaining: #{Time.at(seconds_remaining).utc.strftime("%Hh %Mmin %Ss")}"
+      end
       puts "---"
       puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
     else
