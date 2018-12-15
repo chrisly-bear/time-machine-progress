@@ -10,6 +10,18 @@
 
 require 'date'
 
+if ARGV.length > 0
+  case ARGV[0]
+  when "start"
+    exec('tmutil startbackup')
+  when "stop"
+    exec('tmutil stopbackup')
+  when "enter"
+    exec('open -a /Applications/Time\ Machine.app/')
+  end
+  exit
+end
+
 status_lines = `tmutil status`
 status = {}
 status_lines.each_line do |line|
@@ -40,8 +52,6 @@ else
   last_backup = `/usr/libexec/PlistBuddy -c "Print Destinations:0:SnapshotDates" /Library/Preferences/com.apple.TimeMachine.plist | tail -n 2 | head -n 1`.strip
 end
 
-# working_dir = File.dirname(__FILE__)
-# puts working_dir
 
 ########
 # IDLE #
@@ -52,8 +62,8 @@ if status[:running] == 0
   puts "Latest Backup:"
   puts last_backup
   puts "---"
-  # TODO: start back up in a script
-  puts "Back Up Now | bash='/Users/chris/Dev/time-machine-progress/script.sh' param1='start' terminal=false"
+  # We call this script using __FILE__ with parameter 'start' to start the time machine backup
+  puts "Back Up Now | bash='#{__FILE__}' param1='start' terminal=false"
 
 
 ############
@@ -76,8 +86,7 @@ else
     puts "---"
     puts "Preparing Backup..."
     puts "---"
-    # TODO:
-    puts "Skip This Backup | bash='/Users/chris/Dev/time-machine-progress/script.sh' param1='stop' terminal=false"
+    puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
   else
     if status[:backup_phase].start_with?("Copying")
       per = status[:percent]
@@ -95,8 +104,7 @@ else
       puts "---"
       puts "Backing Up: #{per}%"
       puts "---"
-      # TODO:
-      puts "Skip This Backup | bash='/Users/chris/Dev/time-machine-progress/script.sh' param1='stop' terminal=false"
+      puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
     else
 ###############
 # CLEANING UP #
@@ -105,13 +113,12 @@ else
       puts "---"
       puts "Cleaning Up..."
       puts "---"
-      # TODO:
-      puts "Skip Cleaning Up | bash='/Users/chris/Dev/time-machine-progress/script.sh' param1='stop' terminal=false"
+      puts "Skip Cleaning Up | bash='#{__FILE__}' param1='stop' terminal=false"
     end
   end
 end
 
 
-puts "Enter Time Machine | bash='/Users/chris/Dev/time-machine-progress/script.sh' param1='enter' terminal=false"
+puts "Enter Time Machine | bash='#{__FILE__}' param1='enter' terminal=false"
 puts "---"
 puts "Open Time Machine Preferences... | href='x-apple.systempreferences:com.apple.prefs.backup'"
