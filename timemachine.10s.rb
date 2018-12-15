@@ -11,6 +11,12 @@
 require 'date'
 require 'filesize'
 
+# runs an apple script
+# https://gist.github.com/dinge/6983008
+def osascript(script)
+  system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
+end
+
 if ARGV.length > 0
   case ARGV[0]
   when "start"
@@ -19,6 +25,13 @@ if ARGV.length > 0
     exec('tmutil stopbackup')
   when "enter"
     exec('open -a /Applications/Time\ Machine.app/')
+  when "prefs"
+    osascript <<-END
+      tell application "System Preferences"
+        activate
+        set the current pane to pane id "com.apple.prefs.backup"
+      end tell
+    END
   end
   exit
 end
@@ -131,4 +144,5 @@ end
 
 puts "Enter Time Machine | bash='#{__FILE__}' param1='enter' terminal=false"
 puts "---"
-puts "Open Time Machine Preferences... | href='x-apple.systempreferences:com.apple.prefs.backup'"
+# puts "Open Time Machine Preferences... | href='x-apple.systempreferences:com.apple.prefs.backup'"
+puts "Open Time Machine Preferences... | bash='#{__FILE__}' param1='prefs' terminal=false"
