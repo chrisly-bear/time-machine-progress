@@ -79,7 +79,6 @@ if status[:running] == 0
   # We call this script using __FILE__ with parameter 'start' to start the time machine backup
   puts "Back Up Now | bash='#{__FILE__}' param1='start' terminal=false"
 
-
 ############
 # STOPPING #
 ############
@@ -129,6 +128,7 @@ else
       puts "---"
       puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
     else
+
 ###############
 # CLEANING UP #
 ###############
