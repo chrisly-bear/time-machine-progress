@@ -2,7 +2,7 @@
 
 BitBar Plugin which shows the progress of Time Machine backups visually.
 
-
+![Time Machine Progress Showcase](TMP-Showcase.png)
 
 ## Requirements
 
