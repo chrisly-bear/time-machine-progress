@@ -39,7 +39,7 @@ end
 status_lines = `tmutil status`
 status = {}
 status_lines.each_line do |line|
-  status[:raw_percent] = (line.split("=")[1].tr('";', '').strip.to_f * 100).round() if /^ *\"_raw_Percent\" =/ =~ line
+  status[:raw_percent] = (line.split("=")[1].tr('";', '').strip.to_f * 100) if /^ *\"_raw_Percent\" =/ =~ line
   status[:running] = (line.split("=")[1][0..-2].strip).to_i if /^ *Running =/ =~ line
   status[:stopping] = (line.split("=")[1][0..-2].strip).to_i if /^ *Stopping =/ =~ line
   status[:time_remaining] = (line.split("=")[1][0..-2].strip).to_i if /^ *TimeRemaining =/ =~ line
@@ -127,7 +127,7 @@ else
         end
         puts "---"
         seconds_remaining = status[:time_remaining]
-        puts "Backing up: #{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty} (#{per}%)"
+        puts "Backing up: #{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty} (#{per.round()}%)"
         if seconds_remaining.nil?
           puts "Calculating time remaining..."
         else
@@ -136,7 +136,7 @@ else
       else
         puts icon_backed_up
         puts "---"
-        puts "Backed up: #{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty} (#{per}%)"
+        puts "Backed up: #{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty} (#{per.round()}%)"
       end
       puts "---"
       puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
