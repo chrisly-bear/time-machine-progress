@@ -9,7 +9,7 @@ BitBar Plugin which shows the progress of Time Machine backups visually.
 - [BitBar](https://getbitbar.com)
 - [filesize](https://rubygems.org/gems/filesize/)
   `gem install filesize`
-- macOS 10.14.2
+- macOS 10.14.6, 10.15.4
   (other versions might work but are untested)
 - Full Disk Access (see below)
 
