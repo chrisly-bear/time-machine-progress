@@ -116,13 +116,13 @@ else
       if per < 100
         if per < 25
           puts icon_backing_up_0p
-        elsif per >= 25 and per < 50
+        elsif per < 50
           puts icon_backing_up_25p
-        elsif per >= 50 and per < 75
+        elsif per < 75
           puts icon_backing_up_50p
-        elsif per >= 75 and per < 100
+        elsif per < 95
           puts icon_backing_up_75p
-        elsif per >= 95
+        else
           puts icon_backing_up_100p
         end
         puts "---"
