@@ -101,7 +101,7 @@ else
     puts "Looking for Backup Disk..."
     puts "---"
     puts "Skip This Backup | bash='#{__FILE__}' param1='stop' terminal=false"
-  elsif status[:percent] == -100
+  elsif status[:backup_phase].start_with?("Starting") | status[:backup_phase].start_with?("ThinningPreBackup")
     puts icon_backing_up
     puts "---"
     puts "Preparing Backup..."
