@@ -115,11 +115,10 @@ else
         puts icon_backing_up_100p
       end
       puts "---"
-      puts "Backing Up: #{per}%"
       cur_bytes = status[:cur_bytes].to_s + ' B'
       total_bytes = status[:total_bytes].to_s + ' B'
       seconds_remaining = status[:time_remaining]
-      puts "#{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty}"
+      puts "Backing up: #{Filesize.new(cur_bytes, Filesize::SI).pretty} of #{Filesize.new(total_bytes, Filesize::SI).pretty} (#{per}%)"
       if seconds_remaining.nil?
         puts "Calculating time remaining..."
       else
