@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-# <bitbar.title>Show Time machine Progress</bitbar.title>
+# <bitbar.title>Time Machine Progress</bitbar.title>
 # <bitbar.version>v1.0</bitbar.version>
-# <bitbar.author>Slamet Kristanto</bitbar.author>
-# <bitbar.author.github>drselump14</bitbar.author.github>
-# <bitbar.desc>Show time machine backup progress</bitbar.desc>
+# <bitbar.author>Christoph Schwizer</bitbar.author>
+# <bitbar.author.github>chrisly-bear</bitbar.author.github>
+# <bitbar.desc>Shows Time Machine backup progress visually by changing the menubar icon depending on the state of the backup</bitbar.desc>
 # <bitbar.dependencies>time machine</bitbar.dependencies>
 
 require 'date'
