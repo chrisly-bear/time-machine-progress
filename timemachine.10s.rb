@@ -65,13 +65,7 @@ icon_finishing = "| templateImage=iVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd+PAA
 if File.exist?('/private/var/db/.TimeMachine.Results')
   last_backup = DateTime.strptime((`defaults read /private/var/db/.TimeMachine.Results BACKUP_COMPLETED_DATE`.strip), "%Y-%m-%d %H:%M:%S %z").new_offset(DateTime.now.offset).strftime("%A %B %d, %Y %l:%M %P")
 else
-  last_backup_datetime = DateTime.strptime(`tmutil latestbackup`.split('/')[-1], "%Y-%m-%d-%H%M%S")
-  today_midnight = DateTime.now.to_date
-  if last_backup_datetime >= today_midnight
-    last_backup = last_backup_datetime.strftime("Today, %H:%M")
-  else
-    last_backup = last_backup_datetime.strftime("%d %B %Y")
-  end
+  last_backup = `#{__dir__}/last_backup.sh`
 end
 
 
