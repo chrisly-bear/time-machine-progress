@@ -65,7 +65,7 @@ icon_finishing = "| templateImage=iVBORw0KGgoAAAANSUhEUgAAAEAAAAAiCAYAAADvVd+PAA
 if File.exist?('/private/var/db/.TimeMachine.Results')
   last_backup = DateTime.strptime((`defaults read /private/var/db/.TimeMachine.Results BACKUP_COMPLETED_DATE`.strip), "%Y-%m-%d %H:%M:%S %z").new_offset(DateTime.now.offset).strftime("%A %B %d, %Y %l:%M %P")
 else
-  last_backup = `#{__dir__}/last_backup.sh`
+  last_backup = `"#{__dir__}"/last_backup.sh`
 end
 
 
