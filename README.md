@@ -1,12 +1,12 @@
 # Time Machine Progress
 
-BitBar Plugin which shows the progress of Time Machine backups visually.
+[xbar](https://xbarapp.com/) (previously BitBar) / [SwiftBar](https://swiftbar.app/) plugin that shows the progress of Time Machine backups visually.
 
 ![Time Machine Progress Showcase](TMP-Showcase.png)
 
 ## Requirements
 
-- [BitBar](https://getbitbar.com)
+- [xbar](https://xbarapp.com/) (previously BitBar) or [SwiftBar](https://swiftbar.app/)
 - [filesize](https://rubygems.org/gems/filesize/)
   `gem install filesize`
 - macOS 10.14.6, 10.15.4
